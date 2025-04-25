@@ -25,10 +25,11 @@ console.log(inputData);
     const handelSubmit=async(e)=>{
         e.preventDefault();
         setLoading(true)
-        if(inputData.password !== inputData.confpassword.toLowerCase()){
-            setLoading(false)
-            return toast.error("Password Dosen't match")
-        }
+        if (inputData.password !== inputData.confpassword) {
+            setLoading(false);
+            return toast.error("Passwords don't match");
+          }
+          
         try {
             const register = await axios.post(`/api/auth/register`,inputData);
             const data = register.data;
