@@ -25,11 +25,10 @@ console.log(inputData);
     const handelSubmit=async(e)=>{
         e.preventDefault();
         setLoading(true)
-        if (inputData.password !== inputData.confpassword) {
-            setLoading(false);
-            return toast.error("Passwords don't match");
-          }
-          
+        if(inputData.password !== inputData.confpassword.toLowerCase()){
+            setLoading(false)
+            return toast.error("Password Dosen't match")
+        }
         try {
             const register = await axios.post(`/api/auth/register`,inputData);
             const data = register.data;
@@ -152,12 +151,12 @@ console.log(inputData);
                     <div className='pt-2'>
                         <p className='text-sm font-semibold
                          text-gray-800'>
-                            Don't have an Acount ? <Link to={'/register'}>
+                            Dont have an Acount ? <Link to={'/login'}>
                                 <span
                                     className='text-gray-950 
                             font-bold underline cursor-pointer
                              hover:text-green-950'>
-                                    Register Now!!
+                                    Login Now!!
                                 </span>
                             </Link>
                         </p>
